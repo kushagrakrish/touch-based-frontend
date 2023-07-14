@@ -4,7 +4,9 @@ import UserProfile from "./components/UserProfile";
 const App = () => {
   return (
     <>
-      <UserProfile />
+      <div className='pb-5'>
+        <UserProfile />
+      </div>
     </>
   );
 };
