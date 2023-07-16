@@ -9,12 +9,15 @@ import Mailfooter from "./Mailfooter";
 
 const UserProfile = () => {
   const [showMailDraft, setShowMailDraft] = useState(false);
+  const [isEngageSelected, setIsEngageSelected] = useState(false);
 
   const handleGenerateMail = (e) => {
-    e.preventDefault();
-    setShowMailDraft(true);
+    setShowMailDraft(!showMailDraft);
   };
 
+  const handleToggleEngage = () => {
+    setIsEngageSelected(!isEngageSelected);
+  };
   return (
     <>
       <Box
@@ -55,6 +58,7 @@ const UserProfile = () => {
             </Box>
           </Box>
           {/* Toogle Tabs */}
+
           <Box
             sx={{
               display: "flex",
@@ -66,28 +70,35 @@ const UserProfile = () => {
             }}
           >
             <Box
-              className='font-semibold'
+              className={`font-semibold ${
+                !isEngageSelected ? "bg-[#E9EAFF]" : "bg-[#F5F5F5]"
+              }`}
               sx={{
                 py: 1.5,
                 px: 3,
                 textAlign: "center",
                 width: "50%",
                 color: "#A9B0E3",
-                bgcolor: "#E9EAFF",
                 borderRadius: 999,
+                cursor: "pointer",
               }}
+              onClick={handleToggleEngage}
             >
               OUTREACH
             </Box>
             <Box
-              className='font-semibold'
+              className={`font-semibold ${
+                isEngageSelected ? "bg-[#E9EAFF]" : "bg-[#F5F5F5]"
+              }`}
               sx={{
                 py: 1.5,
                 px: 3,
                 textAlign: "center",
                 width: "50%",
                 borderRadius: 999,
+                cursor: "pointer",
               }}
+              onClick={handleToggleEngage}
             >
               ENGAGE
             </Box>
@@ -128,7 +139,7 @@ const UserProfile = () => {
               </Typography>
               <button
                 className='bg-[#7480CC] text-white px-4 text-sm md:text-base font-normal py-3 rounded-full flex items-center gap-2'
-                onClick={handleGenerateMail}
+                onClick={() => handleGenerateMail()}
               >
                 <MoveToInboxIcon />
                 Generate Outreach Mail
