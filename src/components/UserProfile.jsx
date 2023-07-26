@@ -1,167 +1,74 @@
+import MoveToInboxIcon from "@mui/icons-material/MoveToInbox";
+import SettingsIcon from "@mui/icons-material/Settings";
 import React, { useState } from "react";
-import { Box, Typography, Button, Avatar } from "@mui/material";
-import {
-  MoveToInbox as MoveToInboxIcon,
-  Settings as SettingsIcon,
-} from "@mui/icons-material";
 import MailDraft from "./MailDraft";
 import Mailfooter from "./Mailfooter";
+import { Avatar } from "@chakra-ui/react";
 
 const UserProfile = () => {
   const [showMailDraft, setShowMailDraft] = useState(false);
-  const [isEngageSelected, setIsEngageSelected] = useState(false);
 
-  const handleGenerateMail = (e) => {
-    setShowMailDraft(!showMailDraft);
+  const handleGenerateMail = () => {
+    setShowMailDraft(true);
   };
 
-  const handleToggleEngage = () => {
-    setIsEngageSelected(!isEngageSelected);
-  };
   return (
     <>
-      <Box
-        className='max-w-sm rounded-lg'
-        sx={{
-          backgroundColor: "#FFFFFF",
-          border: "1px solid #E5E5E5",
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-          mx: "auto",
-          pt: "15px",
-        }}
-      >
+      <div className='px-2 bg-[#FFFFFF] border rounded-lg shadow-lg py-5 max-w-sm mx-auto'>
         {/* Header */}
-        <div className='px-[10px]'>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              borderBottom: "1px solid #E5E5E5",
-              pb: "10px",
-            }}
-          >
-            <Typography
-              variant='h6'
-              component='h1'
-              sx={{ color: "#808BD0", fontWeight: "bold" }}
-            >
-              Touch Base
-            </Typography>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <SettingsIcon sx={{ color: "#808BD0" }} />
-              <Typography
-                variant='subtitle1'
-                sx={{ color: "#808BD0", fontWeight: "bold" }}
-              >
-                Free Credits
-              </Typography>
-            </Box>
-          </Box>
-          {/* Toogle Tabs */}
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              bgcolor: "#F5F5F5",
-              borderRadius: 999,
-              my: 3,
-            }}
-          >
-            <Box
-              className={`font-semibold ${
-                !isEngageSelected ? "bg-[#E9EAFF]" : "bg-[#F5F5F5]"
-              }`}
-              sx={{
-                py: 1.5,
-                px: 3,
-                textAlign: "center",
-                width: "50%",
-                color: "#A9B0E3",
-                borderRadius: 999,
-                cursor: "pointer",
-              }}
-              onClick={handleToggleEngage}
-            >
-              OUTREACH
-            </Box>
-            <Box
-              className={`font-semibold ${
-                isEngageSelected ? "bg-[#E9EAFF]" : "bg-[#F5F5F5]"
-              }`}
-              sx={{
-                py: 1.5,
-                px: 3,
-                textAlign: "center",
-                width: "50%",
-                borderRadius: 999,
-                cursor: "pointer",
-              }}
-              onClick={handleToggleEngage}
-            >
-              ENGAGE
-            </Box>
-          </Box>
-          {/* Content Div */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: 3,
-              borderBottom: "1px solid #E5E5E5",
-              pb: 2,
-            }}
-          >
-            <Avatar
-              sx={{
-                bgcolor: "#DEE1FF",
-                width: 50,
-                height: 50,
-                color: "#ABB3EA",
-              }}
-            >
-              RM
-            </Avatar>
-            {/* Content */}
-            <Box>
-              <Typography
-                variant='h5'
-                sx={{ fontWeight: "medium", color: "black" }}
-              >
-                Rachit Manchanda
-              </Typography>
-              <Typography
-                variant='subtitle1'
-                sx={{ fontWeight: "normal", color: "#8c8c8c", mt: 1, mb: 2 }}
-              >
-                Design Guy @Samudai
-              </Typography>
-              <button
-                className='bg-[#7480CC] text-white px-4 text-sm md:text-base font-normal py-3 rounded-full flex items-center gap-2'
-                onClick={() => handleGenerateMail()}
-              >
-                <MoveToInboxIcon />
-                Generate Outreach Mail
-              </button>
-            </Box>
-          </Box>
-          {/* Mail Draft */}
-          {showMailDraft && (
-            <>
-              <Box sx={{ px: 1, py: 2 }}>
-                <MailDraft />
-              </Box>
-              <Box sx={{ px: 1, pb: 2 }}>
-                <MailDraft />
-              </Box>
-            </>
-          )}
+        <div className='w-full flex items-center justify-between border-b border-gray-300 pb-4'>
+          <h1 className='text-xl text-[#808BD0] font-bold'>Touch Base</h1>
+          <div className='flex flex-row-reverse items-center gap-2'>
+            <SettingsIcon className='text-[#808BD0]' />
+            <h2 className='text-base font-semibold text-[#808BD0]'>
+              Free Credits
+            </h2>
+          </div>
         </div>
-        <Box>
+        {/* Toogle Tabs */}
+        <div className='w-full rounded-full bg-[#F5F5F5] flex items-center my-5'>
+          <div className='rounded-full py-3 px-3 text-center w-1/2 text-[#A9B0E3] font-semibold bg-[#E9EAFF]'>
+            OUTREACH
+          </div>
+          <div className='bg-[#F5F5F5] rounded-full py-3 px-3 text-center font-semibold w-1/2'>
+            ENGAGE
+          </div>
+        </div>
+        {/* Content Div */}
+        <div className='flex items-start gap-3 border-b border-gray-300 pb-4'>
+          <Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />
+
+          {/* Content */}
+          <div>
+            <h1 className='text-2xl font-medium text-black'>
+              Rachit Manchanda
+            </h1>
+            <h2 className='text-base font-normal text-[#8c8c8c] mt-1 mb-2 '>
+              Design Guy @Samudai
+            </h2>
+            <button
+              className='bg-[#7480CC] text-white px-4 font-normal py-3 rounded-full flex items-center gap-2'
+              onClick={handleGenerateMail}
+            >
+              <MoveToInboxIcon />
+              Generate Outreach Mail
+            </button>
+          </div>
+        </div>
+        {showMailDraft && (
+          <>
+            <div className='px-2 py-4'>
+              <MailDraft />
+            </div>
+            <div className='px-2'>
+              <MailDraft />
+            </div>
+          </>
+        )}
+        <div>
           <Mailfooter />
-        </Box>
-      </Box>
+        </div>
+      </div>
     </>
   );
 };
